@@ -17,17 +17,14 @@ router.delete("/:id", async (req, res) => {
   //const result = await Inventory.deleteMany({});
   res.status(200).json({ result });
 });
-
 router.get("/", async (req, res) => {
   let result = await Inventory.find({});
   res.status(200).json({ result });
 });
-
 router.use(async (err, req, res, next) => {
   if (res && res.headersSent) {
     return next(err);
   }
-
   if (!err.statusCode) {
     err.statusCode = 500;
   }
